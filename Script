@@ -1,0 +1,38 @@
+
+install.packages("dplyr")
+install.packages("ggpubr")
+library("dplyr")
+library("ggpubr")
+
+#Density plot of PreT and PosT
+ggdensity(PreT,main ="Density plot of PreT",xlab ="Scores")
+ggdensity(PosT,main ="Density plot of PosT",xlab ="Scores")
+
+#QQ plot of PreT and PosT
+ggqqplot(PreT)
+ggqqplot(PosT)
+
+#Shapiro-Wilk's test
+shapiro.test(PreT)
+shapiro.test(PosT)
+
+#Kolmogorov-Smirnov test in R
+ks.test(PreT,"pnorm",mean=mean(PreT),sd=sd(PreT))
+ks.test(PosT,"pnorm",mean=mean(PosT),sd=sd(PosT))
+
+#Jarque-Bera test in R
+install.packages("tseries")
+library(tseries)
+jarque.bera.test(PreT)
+jarque.bera.test(PosT)
+
+PreT=c(14.5,8,8.5,8,4,9.25,10.5,12,10,12.5,13,12.5,9,11,10.5,12,7.5,5,13,10)
+PreT
+PosT=c(17,18.25,13.5,17,15.25,16.5,18.5,15.5,18,18.5,14.75,18.5,17,15,16.5,+
+       14.5,14.5,11,16.75,15.5)
+PosT
+
+test <- t.test(PosT, PreT,alternative = "greater",paired = TRUE)
+test
+
+
